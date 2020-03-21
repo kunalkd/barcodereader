@@ -1,0 +1,140 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+ * {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    box-sizing: border-box;
+    transition: 0.3s all ease-in-out;
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    font-size:12px;
+    margin:0px;
+    padding:0px;
+    width:100%;
+    overflow-x: hidden;
+}
+
+/* Portrait layout (default) */
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 2000ms infinite;
+}
+nav {
+    display: block;
+    width: 100%;
+    height: 60px;
+    background: #1A479E;
+    padding: 15px 15px;
+}
+nav a {
+    text-decoration: none;
+    font-size: 22px;
+    color: white;
+    opacity: 1;
+    font-family: sans-serif;
+    font-weight: 600;
+}
+article {
+    text-align: center;
+    position: relative;
+}
+.icons {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 40% auto;
+    font-size: 16px;
+    padding: 21px;
+    border: 2px solid #1085e0;
+    border-radius: 50%;
+}
+.icons svg{width: 50px;}
+.icons.scan{margin: 0% auto;background: #1085e0;}
+.camera-btn {
+    width: 70px;
+    border: 0px;
+    background: transparent;
+    position: absolute;
+    height: 70px;
+    opacity: 0;
+    top: 10px;
+    right: 14px;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 600;
+    outline: none;
+}
+.icons.scan svg{display: none}
+.icons.scan .camera-btn{opacity: 1; animation:fade 3000ms infinite;
+    -webkit-animation:fade 2000ms infinite;}
+#scanner-div {
+    position: relative;
+    margin: 20% auto;
+    max-height: 305px;
+}
+#scanner-div video {
+    border: 2px solid #1a479e;
+}
