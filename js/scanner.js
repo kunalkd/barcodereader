@@ -76,7 +76,7 @@ function startScanning(){
   });
   /************Action when code is scanned******/
   Quagga.onDetected(function (result) {
-    console.log("Barcode detected and processed : [" + result.codeResult.code + "]", result);
+     alert("Barcode detected and processed : [" + result.codeResult.code + "]", result);
   });
 }
   // Start/stop scanner
