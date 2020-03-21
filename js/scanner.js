@@ -16,12 +16,8 @@ function startScanning(){
     },
     decoder : {
      readers: [
-     format: "ean_reader",
-     config: {
-      supplements: [
-      'ean_5_reader', 'ean_2_reader'
-      ]
-    },
+     "ean_5_reader",
+    "ean_2_reader",
     "code_128_reader",
     "ean_reader",
     "ean_8_reader",
