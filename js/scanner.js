@@ -16,17 +16,23 @@ function startScanning(){
     },
     decoder : {
      readers: [
-     "code_128_reader",
-     "ean_reader",
-     "ean_8_reader",
-     "code_39_reader",
-     "code_39_vin_reader",
-     "codabar_reader",
-     "upc_reader",
-     "upc_e_reader",
-     "i2of5_reader"
-     ],
-     debug: {
+     format: "ean_reader",
+     config: {
+      supplements: [
+      'ean_5_reader', 'ean_2_reader'
+      ]
+    },
+    "code_128_reader",
+    "ean_reader",
+    "ean_8_reader",
+    "code_39_reader",
+    "code_39_vin_reader",
+    "codabar_reader",
+    "upc_reader",
+    "upc_e_reader",
+    "i2of5_reader"
+    ],
+    debug: {
       showCanvas: true,
       showPatches: true,
       showFoundPatches: true,
@@ -76,8 +82,8 @@ function startScanning(){
   });
   /************Action when code is scanned******/
   Quagga.onDetected(function (result) {
-     alert("Barcode detected and processed : [" + result.codeResult.code + "]", result);
-  });
+   alert("Barcode detected and processed : [" + result.codeResult.code + "]", result);
+ });
 }
   // Start/stop scanner
   $('.camera-btn').click(function(){
