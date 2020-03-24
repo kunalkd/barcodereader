@@ -56,8 +56,10 @@
                             <path d="m217.34 341.42c-59.037 0-107.1-48.065-107.1-106.58s48.065-106.58 107.1-106.58 107.1 48.065 107.1 106.58-48.066 106.58-107.1 106.58zm0-181.81c-41.796 0-75.755 33.959-75.755 75.233s33.959 75.233 75.755 75.233 75.755-33.959 75.755-75.233-33.959-75.233-75.755-75.233z" fill="#4DCFE0"/>
                         </svg> 
                     </div> 
-                    <div class="alert alert-info">
-                        <p>The barcode number is: <span class="font-weight-bold" id="result-show"></span></p>
+                    <div class="container">                        
+                        <div class="alert alert-info d-none"  id="result-show">
+                            <p>The barcode number is: <span class="font-weight-bold"></span></p>
+                        </div>
                     </div>
                 </article>
             </section>
@@ -179,7 +181,8 @@ if (result.codeResult && result.codeResult.code) {
   Quagga.onDetected(function(result) {        
     if (result.codeResult.code){
         $('#livestream_scanner').modal('hide');
-        $('#result-show').text(result.codeResult.code);
+        $('#result-show').removeClass('d-none');
+        $('#result-show p span').text(result.codeResult.code);
         Quagga.stop();  
         setTimeout(function(){ $('#livestream_scanner').modal('hide'); }, 1000);      
     }
@@ -198,7 +201,8 @@ if (result.codeResult && result.codeResult.code) {
     if (e.target.files && e.target.files.length) {
         Quagga.decodeSingle($.extend({}, fileConfig, {src: URL.createObjectURL(e.target.files[0])}), function(result) {
             $('#livestream_scanner').modal('hide');
-            $('#result-show').text(result.codeResult.code);
+            $('#result-show').removeClass('d-none');
+            $('#result-show p span').text(result.codeResult.code);
         });
     }
 });
