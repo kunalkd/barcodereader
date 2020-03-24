@@ -44,3 +44,16 @@
   };
 
   app.initialize();
+  $(document).ready(function(){
+    $('#submit-code').click(function(){
+      var code=$('#result-show p span').val();
+      $.ajax({
+        type : 'post',
+            url : '#', //Here you will fetch records 
+            data :  'code='+code, //Pass $id
+            success : function(data){
+              //code
+            }
+          }); 
+    });
+  });
