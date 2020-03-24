@@ -45,6 +45,22 @@
 
   app.initialize();
   $(document).ready(function(){
+    $('#barcode-input').keypress(function (e) {
+     var e = event || evt; 
+     var charCode = e.which || e.keyCode;
+     if (charCode > 31 && (charCode < 48 || charCode > 57)){      
+      $('#number-error').removeClass('d-none');
+      return false;
+    }
+    else{
+      $('#number-error').addClass('d-none');      
+      return true;
+    }
+  });
+    $('#barcode-input-submit').click(function(){
+      $('#result-show').removeClass('d-none');
+      $('#result-show p span').text($('#barcode-input').val());
+    });
     $('#submit-code').click(function(){
       var code=$('#result-show p span').val();
       $.ajax({

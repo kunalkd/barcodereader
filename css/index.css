@@ -105,7 +105,7 @@ article {
     position: relative;
     width: 100px;
     height: 100px;
-    margin: 40% auto;
+    margin: 40% auto 13%;
     font-size: 16px;
     padding: 21px;
     border: 2px solid #1085e0;
@@ -128,8 +128,10 @@ article {
     outline: none;
 }
 .icons.scan svg{display: none}
-.icons.scan .camera-btn{opacity: 1; animation:fade 3000ms infinite;
-    -webkit-animation:fade 2000ms infinite;}
+.icons.scan .camera-btn{
+    opacity: 1; animation:fade 3000ms infinite;
+    -webkit-animation:fade 2000ms infinite;
+}
 #scanner-div {
     position: relative;
     margin: 20% auto;
@@ -138,3 +140,17 @@ article {
 #scanner-div video {
     border: 2px solid #1a479e;
 }
+.or-divider hr {
+    border-top: 2px dashed #e4e4e4;
+}
+.or-divider span {
+    position: absolute;
+    top: -20px;
+    font-size: 18px;
+    background: #fff;
+    padding: 5px;
+    left: 45%;
+    color: #1d87e0;
+    font-weight: 500;
+}
+#number-error{font-size: 12px;color: red;}

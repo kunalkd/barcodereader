@@ -49,15 +49,24 @@
             </header>
             <section>
                 <article>
-                    <div class="icons"  data-toggle="modal" data-target="#livestream_scanner">
-                        <?xml version="1.0" encoding="UTF-8"?>
-                        <svg class="blink" enable-background="new 0 0 435.2 435.2" version="1.1" viewBox="0 0 435.2 435.2" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
-                            <path d="m419 403.59h-403.33c-8.881 0-15.673-6.792-15.673-15.674v-281.08c0-8.882 6.792-15.673 15.673-15.673h85.159l26.645-51.2c2.612-5.224 7.837-8.359 14.106-8.359h141.58c5.224 0 9.927 2.612 13.061 6.792l37.094 52.767h86.204c8.882 0 15.673 6.792 15.673 15.673v281.08c-0.521 8.881-7.313 15.673-16.195 15.673zm-387.66-31.347h371.98v-249.73h-78.89c-5.225 0-9.927-2.612-13.061-6.792l-37.094-52.767h-123.82l-26.645 51.2c-2.612 5.224-7.837 8.359-14.106 8.359h-78.368v249.73z" fill="#1185E0"/>
-                            <path d="m217.34 341.42c-59.037 0-107.1-48.065-107.1-106.58s48.065-106.58 107.1-106.58 107.1 48.065 107.1 106.58-48.066 106.58-107.1 106.58zm0-181.81c-41.796 0-75.755 33.959-75.755 75.233s33.959 75.233 75.755 75.233 75.755-33.959 75.755-75.233-33.959-75.233-75.755-75.233z" fill="#4DCFE0"/>
-                        </svg> 
-                    </div> 
-                    <div class="container">                        
-                        <div class="alert alert-info d-none"  id="result-show">
+                    <div class="container">
+                        <div class="icons"  data-toggle="modal" data-target="#livestream_scanner">
+                            <?xml version="1.0" encoding="UTF-8"?>
+                            <svg class="blink" enable-background="new 0 0 435.2 435.2" version="1.1" viewBox="0 0 435.2 435.2" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                <path d="m419 403.59h-403.33c-8.881 0-15.673-6.792-15.673-15.674v-281.08c0-8.882 6.792-15.673 15.673-15.673h85.159l26.645-51.2c2.612-5.224 7.837-8.359 14.106-8.359h141.58c5.224 0 9.927 2.612 13.061 6.792l37.094 52.767h86.204c8.882 0 15.673 6.792 15.673 15.673v281.08c-0.521 8.881-7.313 15.673-16.195 15.673zm-387.66-31.347h371.98v-249.73h-78.89c-5.225 0-9.927-2.612-13.061-6.792l-37.094-52.767h-123.82l-26.645 51.2c-2.612 5.224-7.837 8.359-14.106 8.359h-78.368v249.73z" fill="#1185E0"/>
+                                <path d="m217.34 341.42c-59.037 0-107.1-48.065-107.1-106.58s48.065-106.58 107.1-106.58 107.1 48.065 107.1 106.58-48.066 106.58-107.1 106.58zm0-181.81c-41.796 0-75.755 33.959-75.755 75.233s33.959 75.233 75.755 75.233 75.755-33.959 75.755-75.233-33.959-75.233-75.755-75.233z" fill="#4DCFE0"/>
+                            </svg> 
+                        </div> 
+                        <div class="mb-5 or-divider position-relative text-center">
+                            <hr>
+                            <span>OR</span>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" placeholder="Enter Barcode Number" id="barcode-input" class="form-control">
+                            <span class="d-none" id="number-error">Please enter a valid input</span>
+                        </div>
+                        <button type="button" class="btn btn-info" id="barcode-input-submit">Submit Code</button>       
+                        <div class="alert alert-info mt-4 d-none"  id="result-show">
                             <p>The barcode number is: <span class="font-weight-bold"></span></p>
                             <button type="button" class="btn btn-primary" id="submit-code">Submit Code</button>
                         </div>
