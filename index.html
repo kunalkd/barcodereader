@@ -56,6 +56,9 @@
                             <path d="m217.34 341.42c-59.037 0-107.1-48.065-107.1-106.58s48.065-106.58 107.1-106.58 107.1 48.065 107.1 106.58-48.066 106.58-107.1 106.58zm0-181.81c-41.796 0-75.755 33.959-75.755 75.233s33.959 75.233 75.755 75.233 75.755-33.959 75.755-75.233-33.959-75.233-75.755-75.233z" fill="#4DCFE0"/>
                         </svg> 
                     </div> 
+                    <div class="alert alert-info">
+                        <p>The barcode number is: <span class="font-weight-bold" id="result-show"></span></p>
+                    </div>
                 </article>
             </section>
             <div class="modal" id="livestream_scanner">
@@ -73,11 +76,12 @@
                         </div>
                         <div class="modal-footer">
                             <form>
-                                <label class="btn btn-default pull-left">
-                                    <i class="fa fa-camera"></i> Use camera app
-                                    <input type="file" accept="image/*;capture=camera" capture="camera" class="hidden" />
-                                </label>
-                                <button type="submit">Submit</button>
+                                <div class="form-group">
+                                    <label class="btn btn-default pull-left">
+                                        <i class="fa fa-camera"></i> Use camera app
+                                        <input type="file" accept="image/*;capture=camera" capture="camera" class="form-control hidden" />
+                                    </label>
+                                </div>
                             </form>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
@@ -174,10 +178,11 @@ if (result.codeResult && result.codeResult.code) {
   // the barcode had actually been found.
   Quagga.onDetected(function(result) {        
     if (result.codeResult.code){
-      alert(result.codeResult.code);
-      Quagga.stop();  
-      setTimeout(function(){ $('#livestream_scanner').modal('hide'); }, 1000);      
-  }
+        $('#livestream_scanner').modal('hide');
+        $('#result-show').text(result.codeResult.code);
+        Quagga.stop();  
+        setTimeout(function(){ $('#livestream_scanner').modal('hide'); }, 1000);      
+    }
 });
 
   // Stop quagga in any case, when the modal is closed
@@ -190,10 +195,13 @@ if (result.codeResult && result.codeResult.code) {
   // Call Quagga.decodeSingle() for every file selected in the 
   // file input
   $("#livestream_scanner input:file").on("change", function(e) {
-        if (e.target.files && e.target.files.length) {
-            Quagga.decodeSingle($.extend({}, fileConfig, {src: URL.createObjectURL(e.target.files[0])}), function(result) {console.log(result.codeResult.code);});
-        }
-    });
+    if (e.target.files && e.target.files.length) {
+        Quagga.decodeSingle($.extend({}, fileConfig, {src: URL.createObjectURL(e.target.files[0])}), function(result) {
+            $('#livestream_scanner').modal('hide');
+            $('#result-show').text(result.codeResult.code);
+        });
+    }
+});
 });
 </script>
 </body>
