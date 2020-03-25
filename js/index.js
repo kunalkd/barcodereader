@@ -45,6 +45,23 @@
 
   app.initialize();
   $(document).ready(function(){
+    let lat='';
+    let long='';
+    getLatLong();
+    function getLatLong() {
+      if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(displayLatLong);
+      } else {
+        $('#latlong').text("Geolocation is not supported by this browser.");
+      }
+    }
+    function displayLatLong(position) {
+      lat=position.coords.latitude;
+      long=position.coords.longitude;
+      $('#latlong').html("<b>Latitude: </b>" + lat +
+      "<br><b>Longitude: </b>" + long);
+    }
+
     $('#barcode-input').keypress(function (e) {
      var e = event || evt; 
      var charCode = e.which || e.keyCode;
@@ -66,7 +83,7 @@
       $.ajax({
         type : 'post',
             url : '#', //Here you will fetch records 
-            data :  'code='+code, //Pass $id
+            data :  'code='+code+'&latitude='+lat+'&longitude='+long, //Pass $id
             success : function(data){
               //code
             }
