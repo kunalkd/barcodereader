@@ -1,159 +1,83 @@
 <!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
 <html>
 <head>
-	<title>new file</title>
-	<meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0">
-	            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-	<style>
-		#interactive.viewport {position: relative; width: 100%; height: auto; overflow: hidden; text-align: center;}
-		#interactive.viewport > canvas, #interactive.viewport > video {max-width: 100%;width: 100%;}
-		canvas.drawing, canvas.drawingBuffer {position: absolute; left: 0; top: 0;}
-	</style>
-</head>
-<body>
-	<div class="row">
-		<div class="col-lg-6">
-			<div class="input-group">
-				<input id="scanner_input" class="form-control" placeholder="Click the button to scan an EAN..." type="text" /> 
-				<span class="input-group-btn"> 
-					<button class="btn btn-default" type="button" data-toggle="modal" data-target="#livestream_scanner">
-						<i class="fa fa-barcode"></i>
-					</button> 
-				</span>
-			</div><!-- /input-group -->
-		</div><!-- /.col-lg-6 -->
-	</div><!-- /.row -->
-	<div class="modal" id="livestream_scanner">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title">Barcode Scanner</h4>
-				</div>
-				<div class="modal-body" style="position: static">
-					<div id="interactive" class="viewport"></div>
-					<div class="error"></div>
-				</div>
-				<div class="modal-footer">
-					<label class="btn btn-default pull-left">
-						<i class="fa fa-camera"></i> Use camera app
-						<input type="file" accept="image/*;capture=camera" capture="camera" class="hidden" />
-					</label>
-					<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
-	<script type="text/javascript">
-		$(function() {
-	// Create the QuaggaJS config object for the live stream
-	var liveStreamConfig = {
-		inputStream: {
-			type : "LiveStream",
-			constraints: {
-				width: {min: 640},
-				height: {min: 480},
-				aspectRatio: {min: 1, max: 100},
-					facingMode: "environment" // or "user" for the front camera
-				}
-			},
-			locator: {
-				patchSize: "medium",
-				halfSample: true
-			},
-			numOfWorkers: (navigator.hardwareConcurrency ? navigator.hardwareConcurrency : 4),
-			decoder: {
-				"readers":[
-				{"format":"ean_reader","config":{}}
-				]
-			},
-			locate: true
-		};
-	// The fallback to the file API requires a different inputStream option. 
-	// The rest is the same 
-	var fileConfig = $.extend(
-		{}, 
-		liveStreamConfig,
-		{
-			inputStream: {
-				size: 800
-			}
-		}
-		);
-	// Start the live stream scanner when the modal opens
-	$('#livestream_scanner').on('shown.bs.modal', function (e) {
-		Quagga.init(
-			liveStreamConfig, 
-			function(err) {
-				if (err) {
-					$('#livestream_scanner .modal-body .error').html('<div class="alert alert-danger"><strong><i class="fa fa-exclamation-triangle"></i> '+err.name+'</strong>: '+err.message+'</div>');
-					Quagga.stop();
-					return;
-				}
-				Quagga.start();
-			}
-			);
-	});
-	
-	// Make sure, QuaggaJS draws frames an lines around possible 
-	// barcodes on the live stream
-	Quagga.onProcessed(function(result) {
-		var drawingCtx = Quagga.canvas.ctx.overlay,
-		drawingCanvas = Quagga.canvas.dom.overlay;
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+            -->
+            <meta name="format-detection" content="telephone=no">
+            <meta name="msapplication-tap-highlight" content="no">
+            <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+            <link rel="stylesheet" type="text/css" href="css/index.css">
+            <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">   
+            <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.css"/>         
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+            <title>GetDistance</title>
+        </head>
+        <body>
+        	<header>
+        		<nav>
+        			<a href="#">GetDistance</a>
+        		</nav>
+        	</header>
+        	<section>
+        		<article>
+        			<div class="container">
+        				<h1>Want to see how far it is?</h1>
+        				<div class="mt-5 mb-3 text-left" id="latlong">
 
-		if (result) {
-			if (result.boxes) {
-				drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
-				result.boxes.filter(function (box) {
-					return box !== result.box;
-				}).forEach(function (box) {
-					Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
-				});
-			}
-
-			if (result.box) {
-				Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
-			}
-
-			if (result.codeResult && result.codeResult.code) {
-				Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
-			}
-		}
-	});
-	
-	// Once a barcode had been read successfully, stop quagga and 
-	// close the modal after a second to let the user notice where 
-	// the barcode had actually been found.
-	Quagga.onDetected(function(result) {    		
-		if (result.codeResult.code){
-			$('#scanner_input').val(result.codeResult.code);
-			Quagga.stop();	
-			setTimeout(function(){ $('#livestream_scanner').modal('hide'); }, 1000);			
-		}
-	});
-
-	// Stop quagga in any case, when the modal is closed
-	$('#livestream_scanner').on('hide.bs.modal', function(){
-		if (Quagga){
-			Quagga.stop();	
-		}
-	});
-	
-	// Call Quagga.decodeSingle() for every file selected in the 
-	// file input
-	$("#livestream_scanner input:file").on("change", function(e) {
-		if (e.target.files && e.target.files.length) {
-			Quagga.decodeSingle($.extend({}, fileConfig, {src: URL.createObjectURL(e.target.files[0])}), function(result) {console.log(result[0]);});
-		}
-	});
-});
-</script>
-</body>
-</html>
+        				</div>
+        				<div class="form-group">
+        					<label for="location">Latitude</label>
+        					<input type="text" id="lat1" class="form-control">
+        				</div>
+        				<div class="form-group">
+        					<label for="location">Longitude</label>
+        					<input type="text" id="long1" class="form-control">
+        				</div>
+        				<div class="form-group">
+        					<label>Unit</label>
+        					<select id="unit" class="form-control">
+        						<option value="#">---Select an unit---</option>
+        						<option value="km">Kilometers(Km)</option>
+        						<option value="m">Miles(M)</option>
+        					</select>
+        				</div>
+        				<div class="form-group">
+        					<input type="button" class="btn btn-primary" id="submit" value="Calculate">
+        					<span class="d-none" id="number-error">Please enter a valid input</span>
+        				</div>
+        				<div class="alert alert-info mt-4 d-none"  id="result-show">
+        					<p>The distance is: <span class="font-weight-bold"></span></p>
+        				</div>
+        			</div>
+        		</article>
+        	</section>
+        	<script src="js/jquery.min.js"></script>
+        	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        	<script type="text/javascript" src="js/index.js"></script>
+        </body>
+        </html>

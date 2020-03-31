@@ -45,8 +45,6 @@
 
   app.initialize();
   $(document).ready(function(){
-    let lat='';
-    let long='';
     getLatLong();
     function getLatLong() {
       if (navigator.geolocation) {
@@ -58,10 +56,9 @@
     function displayLatLong(position) {
       lat=position.coords.latitude;
       long=position.coords.longitude;
-      $('#latlong').html("<b>Latitude: </b>" + lat +
-      "<br><b>Longitude: </b>" + long);
+      $('#latlong').html("<b>Latitude: </b><span id='lat'>" + lat +
+        "</span><br><b>Longitude: </b><span id='long'>" + long+"</span>");
     }
-
     $('#barcode-input').keypress(function (e) {
      var e = event || evt; 
      var charCode = e.which || e.keyCode;
@@ -89,4 +86,48 @@
             }
           }); 
     });
+    /****calculate the distance***/
+    $('#submit').click(function(){
+      var lat1=$('#lat').text();
+      var long1=$('#long').text();
+      var lat2=$('#lat1').val();
+      var long2=$('#long1').val();
+      var unit=$('#unit').val();
+      /*      console.log('lat1='+lat1+'long1='+long1+'lat2='+lat2+'long2='+long2+'unit='+unit);*/
+      if ((lat1=='')||(lat2=='')||(long1=='')||(long2=='')||(unit=='')) {
+        $('#result-show').addClass('d-none');
+        $('#number-error').removeClass('d-none');        
+      }
+      else{
+        $('#number-error').addClass('d-none');
+        $('#result-show').removeClass('d-none');
+        $('#result-show p span').text(getDistance(lat1,long1,lat2,long2,unit));
+      }
+    })
   });
+  function deg2rad(degrees)
+  {
+    var pi = Math.PI;
+    return degrees * (pi/180);
+  }
+  function getDistance(latitude1,longitude1,latitude2,longitude2,unit) {
+    var earthRadius = 6371; 
+    var dLat = deg2rad(latitude2-latitude1);  
+    var dLon = deg2rad(longitude2-longitude1); 
+    var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(latitude1)) * Math.cos(deg2rad(latitude2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = earthRadius * c; 
+    var miles = d / 1.609344; 
+
+    if ( unit == 'km' ) {  
+      d=d+' Km';
+      return d; 
+    } else {
+      miles=miles+'Miles';
+      return miles; 
+    }
+  }

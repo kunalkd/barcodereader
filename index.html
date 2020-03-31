@@ -16,9 +16,9 @@
      KIND, either express or implied.  See the License for the
     specific language governing permissions and limitations
     under the License.
--->
-<html>
-<head>
+  -->
+  <html>
+  <head>
         <!--
         Customize this policy to fit your own app's needs. For more guidance, see:
             https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
@@ -27,90 +27,90 @@
             * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
-            -->
-            <meta name="format-detection" content="telephone=no">
-            <meta name="msapplication-tap-highlight" content="no">
-            <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-            <link rel="stylesheet" type="text/css" href="css/index.css">
-            <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">            
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-            <title>Text Reader</title>
-        </head>
-        <style>
-            #interactive.viewport {position: relative; width: 100%; height: auto; overflow: hidden; text-align: center;}
-            #interactive.viewport > canvas, #interactive.viewport > video {max-width: 100%;width: 100%;}
-            canvas.drawing, canvas.drawingBuffer {position: absolute; left: 0; top: 0;}
-        </style>
-        <body>
-            <header>
+              -->
+              <meta name="format-detection" content="telephone=no">
+              <meta name="msapplication-tap-highlight" content="no">
+              <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+              <link rel="stylesheet" type="text/css" href="css/index.css">
+              <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">            
+              <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+              <title>Text Reader</title>
+            </head>
+            <style>
+              #interactive.viewport {position: relative; width: 100%; height: auto; overflow: hidden; text-align: center;}
+              #interactive.viewport > canvas, #interactive.viewport > video {max-width: 100%;width: 100%;}
+              canvas.drawing, canvas.drawingBuffer {position: absolute; left: 0; top: 0;}
+            </style>
+            <body>
+              <header>
                 <nav>
-                    <a href="#">MyTextReader</a>
+                  <a href="#">MyTextReader</a>
                 </nav>
-            </header>
-            <section>
+              </header>
+              <section>
                 <article>
-                    <div class="container">
-                      <div class="mt-5 text-left" id="latlong">
-                        
-                      </div>
-                        <div class="icons"  data-toggle="modal" data-target="#livestream_scanner">
-                            <?xml version="1.0" encoding="UTF-8"?>
-                            <svg class="blink" enable-background="new 0 0 435.2 435.2" version="1.1" viewBox="0 0 435.2 435.2" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
-                                <path d="m419 403.59h-403.33c-8.881 0-15.673-6.792-15.673-15.674v-281.08c0-8.882 6.792-15.673 15.673-15.673h85.159l26.645-51.2c2.612-5.224 7.837-8.359 14.106-8.359h141.58c5.224 0 9.927 2.612 13.061 6.792l37.094 52.767h86.204c8.882 0 15.673 6.792 15.673 15.673v281.08c-0.521 8.881-7.313 15.673-16.195 15.673zm-387.66-31.347h371.98v-249.73h-78.89c-5.225 0-9.927-2.612-13.061-6.792l-37.094-52.767h-123.82l-26.645 51.2c-2.612 5.224-7.837 8.359-14.106 8.359h-78.368v249.73z" fill="#1185E0"/>
-                                <path d="m217.34 341.42c-59.037 0-107.1-48.065-107.1-106.58s48.065-106.58 107.1-106.58 107.1 48.065 107.1 106.58-48.066 106.58-107.1 106.58zm0-181.81c-41.796 0-75.755 33.959-75.755 75.233s33.959 75.233 75.755 75.233 75.755-33.959 75.755-75.233-33.959-75.233-75.755-75.233z" fill="#4DCFE0"/>
-                            </svg> 
-                        </div> 
-                        <div class="mb-5 or-divider position-relative text-center">
-                            <hr>
-                            <span>OR</span>
-                        </div>
-                        <div class="form-group">
-                            <input type="number" placeholder="Enter Barcode Number" id="barcode-input" class="form-control">
-                            <span class="d-none" id="number-error">Please enter a valid input</span>
-                        </div>
-                        <button type="button" class="btn btn-info" id="barcode-input-submit">Submit Code</button>       
-                        <div class="alert alert-info mt-4 d-none"  id="result-show">
-                            <p>The barcode number is: <span class="font-weight-bold"></span></p>
-                            <button type="button" class="btn btn-primary" id="submit-code">Submit Code</button>
-                        </div>
+                  <div class="container">
+                    <div class="mt-5 text-left" id="latlong">
+                      
                     </div>
+                    <div class="icons"  data-toggle="modal" data-target="#livestream_scanner">
+                      <?xml version="1.0" encoding="UTF-8"?>
+                      <svg class="blink" enable-background="new 0 0 435.2 435.2" version="1.1" viewBox="0 0 435.2 435.2" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m419 403.59h-403.33c-8.881 0-15.673-6.792-15.673-15.674v-281.08c0-8.882 6.792-15.673 15.673-15.673h85.159l26.645-51.2c2.612-5.224 7.837-8.359 14.106-8.359h141.58c5.224 0 9.927 2.612 13.061 6.792l37.094 52.767h86.204c8.882 0 15.673 6.792 15.673 15.673v281.08c-0.521 8.881-7.313 15.673-16.195 15.673zm-387.66-31.347h371.98v-249.73h-78.89c-5.225 0-9.927-2.612-13.061-6.792l-37.094-52.767h-123.82l-26.645 51.2c-2.612 5.224-7.837 8.359-14.106 8.359h-78.368v249.73z" fill="#1185E0"/>
+                        <path d="m217.34 341.42c-59.037 0-107.1-48.065-107.1-106.58s48.065-106.58 107.1-106.58 107.1 48.065 107.1 106.58-48.066 106.58-107.1 106.58zm0-181.81c-41.796 0-75.755 33.959-75.755 75.233s33.959 75.233 75.755 75.233 75.755-33.959 75.755-75.233-33.959-75.233-75.755-75.233z" fill="#4DCFE0"/>
+                      </svg> 
+                    </div> 
+                    <div class="mb-5 or-divider position-relative text-center">
+                      <hr>
+                      <span>OR</span>
+                    </div>
+                    <div class="form-group">
+                      <input type="number" placeholder="Enter Barcode Number" id="barcode-input" class="form-control">
+                      <span class="d-none" id="number-error">Please enter a valid input</span>
+                    </div>
+                    <button type="button" class="btn btn-info" id="barcode-input-submit">Submit Code</button>       
+                    <div class="alert alert-info mt-4 d-none"  id="result-show">
+                      <p>The barcode number is: <span class="font-weight-bold"></span></p>
+                      <button type="button" class="btn btn-primary" id="submit-code">Submit Code</button>
+                    </div>
+                  </div>
                 </article>
-            </section>
-            <div class="modal" id="livestream_scanner">
+              </section>
+              <div class="modal" id="livestream_scanner">
                 <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Barcode Scanner</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Barcode Scanner</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body" style="position: static">
+                      <div id="interactive" class="viewport"></div>
+                      <div class="error"></div>
+                    </div>
+                    <div class="modal-footer">
+                      <form>
+                        <div class="form-group">
+                          <label class="btn btn-default pull-left">
+                            <i class="fa fa-camera"></i> Use camera app
+                            <input type="file" accept="image/*;capture=camera" capture="camera" class="form-control hidden" />
+                          </label>
                         </div>
-                        <div class="modal-body" style="position: static">
-                            <div id="interactive" class="viewport"></div>
-                            <div class="error"></div>
-                        </div>
-                        <div class="modal-footer">
-                            <form>
-                                <div class="form-group">
-                                    <label class="btn btn-default pull-left">
-                                        <i class="fa fa-camera"></i> Use camera app
-                                        <input type="file" accept="image/*;capture=camera" capture="camera" class="form-control hidden" />
-                                    </label>
-                                </div>
-                            </form>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div><!-- /.modal-content -->
+                      </form>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-            <script src="js/jquery.min.js"></script>
-            <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
-            <script type="text/javascript" src="js/index.js"></script>
-            <script type="text/javascript">
+              </div><!-- /.modal -->
+              <script src="js/jquery.min.js"></script>
+              <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+              <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.js"></script>
+              <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+              <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.js"></script>
+              <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+              <script type="text/javascript" src="js/index.js"></script>
+              <script type="text/javascript">
                 $(function() {
   // Create the QuaggaJS config object for the live stream
   var liveStreamConfig = {
@@ -121,20 +121,20 @@
         height: {min: 480},
         aspectRatio: {min: 1, max: 100},
           facingMode: "environment" // or "user" for the front camera
-      }
-  },
-  locator: {
-    patchSize: "medium",
-    halfSample: true
-},
-numOfWorkers: (navigator.hardwareConcurrency ? navigator.hardwareConcurrency : 4),
-decoder: {
-    "readers":[
-    {"format":"ean_reader","config":{}}
-    ]
-},
-locate: true
-};
+        }
+      },
+      locator: {
+        patchSize: "medium",
+        halfSample: true
+      },
+      numOfWorkers: (navigator.hardwareConcurrency ? navigator.hardwareConcurrency : 4),
+      decoder: {
+        "readers":[
+        {"format":"ean_reader","config":{}}
+        ]
+      },
+      locate: true
+    };
   // The fallback to the file API requires a different inputStream option. 
   // The rest is the same 
   var fileConfig = $.extend(
@@ -143,9 +143,9 @@ locate: true
     {
       inputStream: {
         size: 800
+      }
     }
-}
-);
+    );
   // Start the live stream scanner when the modal opens
   $('#livestream_scanner').on('shown.bs.modal', function (e) {
     Quagga.init(
@@ -155,11 +155,11 @@ locate: true
           $('#livestream_scanner .modal-body .error').html('<div class="alert alert-danger"><strong><i class="fa fa-exclamation-triangle"></i> '+err.name+'</strong>: '+err.message+'</div>');
           Quagga.stop();
           return;
+        }
+        Quagga.start();
       }
-      Quagga.start();
-  }
-  );
-});
+      );
+  });
   
   // Make sure, QuaggaJS draws frames an lines around possible 
   // barcodes on the live stream
@@ -172,52 +172,52 @@ locate: true
         drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
         result.boxes.filter(function (box) {
           return box !== result.box;
-      }).forEach(function (box) {
+        }).forEach(function (box) {
           Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
-      });
-  }
+        });
+      }
 
-  if (result.box) {
-    Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
-}
+      if (result.box) {
+        Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
+      }
 
-if (result.codeResult && result.codeResult.code) {
-    Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
-}
-}
-});
+      if (result.codeResult && result.codeResult.code) {
+        Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
+      }
+    }
+  });
   
   // Once a barcode had been read successfully, stop quagga and 
   // close the modal after a second to let the user notice where 
   // the barcode had actually been found.
   Quagga.onDetected(function(result) {        
     if (result.codeResult.code){
-        $('#livestream_scanner').modal('hide');
-        $('#result-show').removeClass('d-none');
-        $('#result-show p span').text(result.codeResult.code);
-        Quagga.stop();  
-        setTimeout(function(){ $('#livestream_scanner').modal('hide'); }, 1000);      
+      $('#livestream_scanner').modal('hide');
+      $('#result-show').removeClass('d-none');
+      $('#result-show p span').text(result.codeResult.code);
+      Quagga.stop();  
+      setTimeout(function(){ $('#livestream_scanner').modal('hide'); }, 1000);      
     }
-});
+  });
 
   // Stop quagga in any case, when the modal is closed
   $('#livestream_scanner').on('hide.bs.modal', function(){
     if (Quagga){
       Quagga.stop();  
-  }
-});
+    }
+  });
   
   // Call Quagga.decodeSingle() for every file selected in the 
   // file input
   $("#livestream_scanner input:file").on("change", function(e) {
     if (e.target.files && e.target.files.length) {
-        Quagga.decodeSingle($.extend({}, fileConfig, {src: URL.createObjectURL(e.target.files[0])}), function(result) {
-            $('#livestream_scanner').modal('hide');
-            $('#result-show').removeClass('d-none');
-            $('#result-show p span').text(result.codeResult.code);
-        });
+      Quagga.decodeSingle($.extend({}, fileConfig, {src: URL.createObjectURL(e.target.files[0])}), function(result) {
+        $('#livestream_scanner').modal('hide');
+        $('#result-show').removeClass('d-none');
+        $('#result-show p span').text(result.codeResult.code);
+      });
     }
-});
+  });
 });
 </script>
 </body>
