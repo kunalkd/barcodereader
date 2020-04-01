@@ -86,25 +86,8 @@
             }
           }); 
     });
-    /****calculate the distance***/
-    $('#submit').click(function(){
-      var lat1=$('#lat').text();
-      var long1=$('#long').text();
-      var lat2=$('#lat1').val();
-      var long2=$('#long1').val();
-      var unit=$('#unit').val();
-      /*      console.log('lat1='+lat1+'long1='+long1+'lat2='+lat2+'long2='+long2+'unit='+unit);*/
-      if ((lat1=='')||(lat2=='')||(long1=='')||(long2=='')||(unit=='')) {
-        $('#result-show').addClass('d-none');
-        $('#number-error').removeClass('d-none');        
-      }
-      else{
-        $('#number-error').addClass('d-none');
-        $('#result-show').removeClass('d-none');
-        $('#result-show p span').text(getDistance(lat1,long1,lat2,long2,unit));
-      }
-    })
   });
+  /****calculate the distance***/
   function deg2rad(degrees)
   {
     var pi = Math.PI;

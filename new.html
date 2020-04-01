@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <!--
     Licensed to the Apache Software Foundation (ASF) under one
     or more contributor license agreements.  See the NOTICE file
@@ -47,37 +47,80 @@
         		<article>
         			<div class="container">
         				<h1>Want to see how far it is?</h1>
-        				<div class="mt-5 mb-3 text-left" id="latlong">
+        				<div class="mt-5 mb-3">
+                            <div class="form-group">
+                                <label>Latitude 1</label>
+                                <input type="text" id="latinput" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Longitiude 1</label>
+                                <input type="text" id="longinput" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                         <label for="location">Latitude 2</label>
+                         <input type="text" id="lat1" class="form-control">
+                     </div>
+                     <div class="form-group">
+                         <label for="location">Longitude 2</label>
+                         <input type="text" id="long1" class="form-control">
+                     </div>
+                     <div class="form-group">
+                         <label>Unit</label>
+                         <select id="unit" class="form-control">
+                          <option value="#">---Select an unit---</option>
+                          <option value="km">Kilometers(Km)</option>
+                          <option value="m">Miles(M)</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                     <input type="button" class="btn btn-primary" id="submit" value="Calculate">
+                     <span class="d-none" id="number-error">Please enter a valid input</span>
+                 </div>
+                 <div class="alert alert-info mt-4 d-none"  id="result-show">
+                     <p>The distance is: <span class="font-weight-bold"></span></p>
+                 </div>
+             </div>
+         </article>
+     </section>
+     <script src="js/jquery.min.js"></script>
+     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="js/index.js"></script>
+     <script type="text/javascript">
+        $(document).ready(function(){
+            getLatLong();
+            $('#submit').click(function(){
+              var lat1=$('#latinput').val();
+              var long1=$('#longinput').val();
+              var lat2=$('#lat1').val();
+              var long2=$('#long1').val();
+              var unit=$('#unit').val();
+              /*      console.log('lat1='+lat1+'long1='+long1+'lat2='+lat2+'long2='+long2+'unit='+unit);*/
+              if ((lat1=='')||(lat2=='')||(long1=='')||(long2=='')||(unit=='')) {
+                $('#result-show').addClass('d-none');
+                $('#number-error').removeClass('d-none');        
+            }
+            else{
+                $('#number-error').addClass('d-none');
+                $('#result-show').removeClass('d-none');
+                $('#result-show p span').text(getDistance(lat1,long1,lat2,long2,unit));
+            }
+        })
+            function getLatLong() {
+              if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(displayLatLong);
+            } else {
+                $('#latlong').text("Geolocation is not supported by this browser.");
+            }
+        }
+        function displayLatLong(position) {
+          lat=position.coords.latitude;
+          long=position.coords.longitude;
+          $('#latinput').val(lat);
+          $('#longinput').val(long);
+      }
 
-        				</div>
-        				<div class="form-group">
-        					<label for="location">Latitude</label>
-        					<input type="text" id="lat1" class="form-control">
-        				</div>
-        				<div class="form-group">
-        					<label for="location">Longitude</label>
-        					<input type="text" id="long1" class="form-control">
-        				</div>
-        				<div class="form-group">
-        					<label>Unit</label>
-        					<select id="unit" class="form-control">
-        						<option value="#">---Select an unit---</option>
-        						<option value="km">Kilometers(Km)</option>
-        						<option value="m">Miles(M)</option>
-        					</select>
-        				</div>
-        				<div class="form-group">
-        					<input type="button" class="btn btn-primary" id="submit" value="Calculate">
-        					<span class="d-none" id="number-error">Please enter a valid input</span>
-        				</div>
-        				<div class="alert alert-info mt-4 d-none"  id="result-show">
-        					<p>The distance is: <span class="font-weight-bold"></span></p>
-        				</div>
-        			</div>
-        		</article>
-        	</section>
-        	<script src="js/jquery.min.js"></script>
-        	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        	<script type="text/javascript" src="js/index.js"></script>
-        </body>
-        </html>
+  })
+</script>
+</body>
+</html>
