@@ -43,182 +43,66 @@
             </style>
             <body>
               <header>
-                <nav>
-                  <a href="#">MyTextReader</a>
+                <nav class="navbar navbar-expand-lg navbar-dark">
+                  <a class="navbar-brand" href="#">MyScanner</a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item active">
+                        <a class="nav-link" href="#">Check Host<span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="initiate.html">Initiate ZTP</a>
+                      </li>
+                    </ul>
+                  </div>
                 </nav>
               </header>
               <section>
                 <article>
                   <div class="container">
-                    <div class="mt-5 text-left" id="latlong">
-                      
+                    <div class="form-group mt-3">
+                      <label for="Hostname">Enter Hostname :</label>
+                      <input type="text" id="hostname" class="form-control">
                     </div>
-                    <div class="icons"  data-toggle="modal" data-target="#livestream_scanner">
-                      <?xml version="1.0" encoding="UTF-8"?>
-                      <svg class="blink" enable-background="new 0 0 435.2 435.2" version="1.1" viewBox="0 0 435.2 435.2" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
-                        <path d="m419 403.59h-403.33c-8.881 0-15.673-6.792-15.673-15.674v-281.08c0-8.882 6.792-15.673 15.673-15.673h85.159l26.645-51.2c2.612-5.224 7.837-8.359 14.106-8.359h141.58c5.224 0 9.927 2.612 13.061 6.792l37.094 52.767h86.204c8.882 0 15.673 6.792 15.673 15.673v281.08c-0.521 8.881-7.313 15.673-16.195 15.673zm-387.66-31.347h371.98v-249.73h-78.89c-5.225 0-9.927-2.612-13.061-6.792l-37.094-52.767h-123.82l-26.645 51.2c-2.612 5.224-7.837 8.359-14.106 8.359h-78.368v249.73z" fill="#1185E0"/>
-                        <path d="m217.34 341.42c-59.037 0-107.1-48.065-107.1-106.58s48.065-106.58 107.1-106.58 107.1 48.065 107.1 106.58-48.066 106.58-107.1 106.58zm0-181.81c-41.796 0-75.755 33.959-75.755 75.233s33.959 75.233 75.755 75.233 75.755-33.959 75.755-75.233-33.959-75.233-75.755-75.233z" fill="#4DCFE0"/>
-                      </svg> 
-                    </div> 
-                    <div class="mb-5 or-divider position-relative text-center">
-                      <hr>
-                      <span>OR</span>
-                    </div>
-                    <div class="form-group">
-                      <input type="number" placeholder="Enter Barcode Number" id="barcode-input" class="form-control">
-                      <span class="d-none" id="number-error">Please enter a valid input</span>
-                    </div>
-                    <button type="button" class="btn btn-info" id="barcode-input-submit">Submit Code</button>       
-                    <div class="alert alert-info mt-4 d-none"  id="result-show">
-                      <p>The barcode number is: <span class="font-weight-bold"></span></p>
-                      <button type="button" class="btn btn-primary" id="submit-code">Submit Code</button>
-                    </div>
+                    <button type="button" class="btn btn-outline-primary mx-auto" id="check-status">Check Status</button>
                   </div>
                 </article>
               </section>
-              <div class="modal" id="livestream_scanner">
+              <div class="modal" id="show-status">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title">Barcode Scanner</h4>
+                      <h4 class="modal-title">Hostname Status</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div class="modal-body" style="position: static">
-                      <div id="interactive" class="viewport"></div>
-                      <div class="error"></div>
+                    <div class="modal-body">
+                      <div class="alert alert-success" id="alert">
+
+                      </div>
                     </div>
                     <div class="modal-footer">
-                      <form>
-                        <div class="form-group">
-                          <label class="btn btn-default pull-left">
-                            <i class="fa fa-camera"></i> Use camera app
-                            <input type="file" accept="image/*;capture=camera" capture="camera" class="form-control hidden" />
-                          </label>
-                        </div>
-                      </form>
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
               </div><!-- /.modal -->
-              <script src="js/jquery.min.js"></script>
-              <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-              <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.js"></script>
-              <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
-              <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.js"></script>
-              <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+              <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+              <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
               <script type="text/javascript" src="js/index.js"></script>
               <script type="text/javascript">
-                $(function() {
-  // Create the QuaggaJS config object for the live stream
-  var liveStreamConfig = {
-    inputStream: {
-      type : "LiveStream",
-      constraints: {
-        width: {min: 400},
-        height: {min: 480},
-        aspectRatio: {min: 1, max: 100},
-          facingMode: "environment" // or "user" for the front camera
-        }
-      },
-      locator: {
-        patchSize: "medium",
-        halfSample: true
-      },
-      numOfWorkers: (navigator.hardwareConcurrency ? navigator.hardwareConcurrency : 4),
-      decoder: {
-        "readers":[
-        {"format":"ean_reader","config":{}}
-        ]
-      },
-      locate: true
-    };
-  // The fallback to the file API requires a different inputStream option. 
-  // The rest is the same 
-  var fileConfig = $.extend(
-    {}, 
-    liveStreamConfig,
-    {
-      inputStream: {
-        size: 800
-      }
-    }
-    );
-  // Start the live stream scanner when the modal opens
-  $('#livestream_scanner').on('shown.bs.modal', function (e) {
-    Quagga.init(
-      liveStreamConfig, 
-      function(err) {
-        if (err) {
-          $('#livestream_scanner .modal-body .error').html('<div class="alert alert-danger"><strong><i class="fa fa-exclamation-triangle"></i> '+err.name+'</strong>: '+err.message+'</div>');
-          Quagga.stop();
-          return;
-        }
-        Quagga.start();
-      }
-      );
-  });
-  
-  // Make sure, QuaggaJS draws frames an lines around possible 
-  // barcodes on the live stream
-  Quagga.onProcessed(function(result) {
-    var drawingCtx = Quagga.canvas.ctx.overlay,
-    drawingCanvas = Quagga.canvas.dom.overlay;
-
-    if (result) {
-      if (result.boxes) {
-        drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
-        result.boxes.filter(function (box) {
-          return box !== result.box;
-        }).forEach(function (box) {
-          Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
-        });
-      }
-
-      if (result.box) {
-        Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
-      }
-
-      if (result.codeResult && result.codeResult.code) {
-        Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
-      }
-    }
-  });
-  
-  // Once a barcode had been read successfully, stop quagga and 
-  // close the modal after a second to let the user notice where 
-  // the barcode had actually been found.
-  Quagga.onDetected(function(result) {        
-    if (result.codeResult.code){
-      $('#livestream_scanner').modal('hide');
-      $('#result-show').removeClass('d-none');
-      $('#result-show p span').text(result.codeResult.code);
-      Quagga.stop();  
-      setTimeout(function(){ $('#livestream_scanner').modal('hide'); }, 1000);      
-    }
-  });
-
-  // Stop quagga in any case, when the modal is closed
-  $('#livestream_scanner').on('hide.bs.modal', function(){
-    if (Quagga){
-      Quagga.stop();  
-    }
-  });
-  
-  // Call Quagga.decodeSingle() for every file selected in the 
-  // file input
-  $("#livestream_scanner input:file").on("change", function(e) {
-    if (e.target.files && e.target.files.length) {
-      Quagga.decodeSingle($.extend({}, fileConfig, {src: URL.createObjectURL(e.target.files[0])}), function(result) {
-        $('#livestream_scanner').modal('hide');
-        $('#result-show').removeClass('d-none');
-        $('#result-show p span').text(result.codeResult.code);
-      });
-    }
-  });
-});
-</script>
-</body>
-</html>
+                $(document).ready(function(){
+                  $('#check-status').click(function(){
+                    var hostname=$('#hostname').val();
+                    $('#show-status').modal('show');
+                    $('#alert').html('<strong>Hostname: '+hostname+'</strong> is available for use!');
+                  })
+                })
+              </script>
+            </body>
+            </html>
